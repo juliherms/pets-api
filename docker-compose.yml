@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  database:
+    image: postgres
+    container_name: database-pets
+    restart: unless-stopped
+    #apply health check
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root" ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=h5UzM2kEnp8Q42
+      - APP_DB_USER=pets
+      - APP_DB_PASS=nJ6vsW37rCd1v88
+      - APP_DB_NAME=pets_db
+    ports:
+      - '5432:5432'
+    # shared volumes
+    volumes:
+      # execute initial file
+      - ./postgres/db:/docker-entrypoint-initdb.d/
+      - ./postgres/data:/var/lib/postgresql/data
