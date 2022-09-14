@@ -27,16 +27,14 @@ services:
     networks:
       - database
 
-  #grafana-api-pets:
-  #  image: grafana/grafana
-  #  container_name: grafana-api-pets
-  #  volumes:
-  #    - ./grafana:var/lib/grafana
-  # restart: unless-stopped
-  #  ports:
-  #    - 3000:3000
-  #  networks:
-  #    - monit
+  grafana-api-pets:
+    image: grafana/grafana
+    container_name: grafana-api-pets
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+    networks:
+      - monit
 
 networks:
   database:
