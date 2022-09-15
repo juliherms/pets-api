@@ -16,4 +16,5 @@ scrape_configs:
 - job_name: api-pets
   metrics_path: /actuator/prometheus
   static_configs:
-    - targets: ['localhost:8080']
+    - targets:
+        - 192.168.18.78:8080
