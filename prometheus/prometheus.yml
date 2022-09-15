@@ -1,0 +1,19 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+
+#Job for prometheus
+- job_name: prometheus-api-pets
+  scrape_interval: 15s
+  scrape_timeout: 10s
+  metrics_path: /metrics
+  scheme: http
+  static_configs:
+    - targets: ['localhost:9090']
+
+#Job for api pets
+- job_name: api-pets
+  metrics_path: /actuator/prometheus
+  static_configs:
+    - targets: ['localhost:8080']

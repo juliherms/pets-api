@@ -26,13 +26,23 @@ services:
       - ./postgres/data:/var/lib/postgresql/data
     networks:
       - database
-
+#grafana
   grafana-api-pets:
     image: grafana/grafana
     container_name: grafana-api-pets
     restart: unless-stopped
     ports:
       - 3000:3000
+    networks:
+      - monit
+ #prometheus
+  prometheus-service:
+    container_name: prometheus-api-pets
+    image: prom/prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090
     networks:
       - monit
 
